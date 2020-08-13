@@ -1,15 +1,19 @@
 <template>
   <div class="home">
-    <ArticleDetail></ArticleDetail>
+    <ul>
+      <li v-for="(article, index) in articleList" :key="index">
+        <router-link :to="`${article}.md`">{{ article }}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import ArticleDetail from "@/components/ArticleDetail.vue";
+import { articles } from "@/utils/utils";
 
-@Options({
-  components: { ArticleDetail }
-})
-export default class Home extends Vue {}
+@Options({})
+export default class Home extends Vue {
+  articleList = articles.keys().map(key => key.replace(/\.\/(.*)\.md$/g, "$1"));
+}
 </script>

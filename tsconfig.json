@@ -11,10 +11,9 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "markdown-it",
-      "highlight.js",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/typings"
     ],
     "paths": {
       "@/*": [
@@ -31,9 +30,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.vue"
   ],
   "exclude": [
     "node_modules"

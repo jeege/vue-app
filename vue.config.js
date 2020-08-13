@@ -9,8 +9,8 @@ module.exports = {
     config.module
       .rule("markdown")
       .test(/\.md$/)
-      .use("html-loader")
-      .loader("html-loader")
+      .use("raw-loader")
+      .loader("raw-loader")
       .end();
     config.plugin("html").tap(args => {
       args[0].title = "这是一个页面";
