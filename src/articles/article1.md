@@ -69,6 +69,9 @@
     }
 ```
 
+效果图：
+
+![table-border-radius](https://cdn.jsdelivr.net/gh/jeege/pictures/table-border-radius_2020_08_15_10_59_31.jpg)
 
 
 
