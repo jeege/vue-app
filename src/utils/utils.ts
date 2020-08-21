@@ -1,5 +1,5 @@
 import MarkdownIt from "markdown-it";
-import hljs from "highlight.js";
+import hljs from "hljs";
 
 export function getSingle<T>(fn: () => T) {
   let instance: T | undefined;

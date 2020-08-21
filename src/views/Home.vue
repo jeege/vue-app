@@ -24,5 +24,8 @@ import { articles } from "@/utils/utils";
 })
 export default class Home extends Vue {
   articleList = articles.keys().map(key => key.replace(/\.\/(.*)\.md$/g, "$1"));
+  mounted() {
+    console.log(1111);
+  }
 }
 </script>
