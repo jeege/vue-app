@@ -22,11 +22,22 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 .article {
   font-size: 14px;
-  ::v-deep(blockquote, dl, ol, p, pre, table, ul) {
+  ::v-deep(blockquote),
+  ::v-deep(dl),
+  ::v-deep(ol),
+  ::v-deep(p),
+  ::v-deep(pre),
+  ::v-deep(table),
+  ::v-deep(ul) {
     margin: 0;
     margin-bottom: 16px;
   }
-  ::v-deep(h1, h2, h3, h4, h5, h6) {
+  ::v-deep(h1),
+  ::v-deep(h2),
+  ::v-deep(h3),
+  ::v-deep(h4),
+  ::v-deep(h5),
+  ::v-deep(h6) {
     margin-top: 24px;
     margin-bottom: 16px;
     font-weight: 600;
