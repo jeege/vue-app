@@ -22,41 +22,27 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 .article {
   font-size: 14px;
-  ::v-deep {
-    blockquote,
-    dl,
-    ol,
-    p,
-    pre,
-    table,
-    ul {
-      margin: 0;
-      margin-bottom: 16px;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-top: 24px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-
-    h3 {
-      font-size: 1.5em;
-    }
-    blockquote {
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: 0.25em solid #dfe2e5;
-    }
-    a {
-      background-color: transparent;
-      -webkit-text-decoration-skip: objects;
-    }
+  ::v-deep(blockquote, dl, ol, p, pre, table, ul) {
+    margin: 0;
+    margin-bottom: 16px;
+  }
+  ::v-deep(h1, h2, h3, h4, h5, h6) {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+  ::v-deep(h3) {
+    font-size: 1.5em;
+  }
+  ::v-deep(blockquote) {
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+  }
+  ::v-deep(a) {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
   }
 }
 </style>
