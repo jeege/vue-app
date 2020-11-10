@@ -1,7 +1,9 @@
-declare module 'vue/types/vue' {
-    import { RouteLocation, Router } from "vue-router";
-    interface Vue {
-        $route: RouteLocation,
-        $router: Router
-    }
+import "vue";
+import anime from "animejs";
+
+export {};
+declare module "@vue/runtime-core" {
+  export interface ComponentCustomProperties {
+    $anime: typeof anime;
+  }
 }

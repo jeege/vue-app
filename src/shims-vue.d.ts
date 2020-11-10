@@ -6,7 +6,3 @@ declare module "*.vue" {
 declare module "*.md" {
   export default string;
 }
-declare module "hljs" {
-  import hljs from 'highlight.js'
-  export = hljs
-}

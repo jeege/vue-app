@@ -22,22 +22,17 @@
         </a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content class="main-content">
-        <div class="main-wrap">
-          <router-view></router-view>
-        </div>
+        <router-view></router-view>
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script lang="ts">
-import { Router, RouteLocation } from "vue-router";
 import { Options, Vue } from "vue-class-component";
 
 @Options({})
 export default class Home extends Vue {
-  $route!: RouteLocation;
-  $router!: Router;
   menuList = [
     {
       title: "文章列表",
@@ -47,6 +42,11 @@ export default class Home extends Vue {
   get breadcrumbList() {
     const paths: string[] = [];
     return this.$route.matched.filter(item => {
+      // 文章页面面包屑设置
+      if (item.name === "article") {
+        item.meta.breadcrumbName = this.$route.params.article;
+      }
+      // 过滤重复的链接
       if (!paths.includes(item.path)) {
         paths.push(item.path);
         return true;
@@ -55,7 +55,9 @@ export default class Home extends Vue {
     });
   }
   mounted() {
-    this.$router.push(this.menuList[0].link);
+    if (this.$route.name === "home") {
+      this.$router.push(this.menuList[0].link);
+    }
   }
 }
 </script>
