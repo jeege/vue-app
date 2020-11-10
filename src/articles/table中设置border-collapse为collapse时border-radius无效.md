@@ -1,3 +1,4 @@
+# table中设置border-collapse为collapse时border-radius无效
 在工作中碰到一个需求，表格可以任意合并行列，有边框而且边框需要有圆角。
 
 看到要边框，首先想到把**border-collapse**设置为**collapse**，边框完美的实现了,但是border-radius样式并没有生效，经查阅发现如下问题：

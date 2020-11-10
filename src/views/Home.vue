@@ -30,9 +30,6 @@ export default class Home extends Vue {
       link: "/articles"
     }
   ];
-  mounted() {
-    this.$router.push(this.menuList[0].link);
-  }
 }
 </script>
 

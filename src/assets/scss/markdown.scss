@@ -1,4 +1,6 @@
 .markdown {
+    width: 860px;
+    margin: 0 auto;
     font-size: 16px;
     blockquote,
     details,
@@ -64,7 +66,7 @@
         }
     }
     li {
-        word-wrap: break-all;
+        word-break: break-all;
         & > p {
             margin-top: 16px;
         }
