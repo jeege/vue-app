@@ -1,26 +1,44 @@
 import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import RoutePage from "../views/RoutePage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
+    meta: {
+      breadcrumbName: "首页"
+    },
     children: [
       {
-        path: "/articles",
-        name: "Articles",
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-          import(/* webpackChunkName: "articles" */ "../views/ArticleList.vue")
-      },
-      {
-        path: "/:article",
-        name: "Article",
-        component: () =>
-          import(/* webpackChunkName: "article" */ "../views/Article.vue")
+        path: "/article",
+        component: RoutePage,
+        meta: {
+          breadcrumbName: "文章列表"
+        },
+        children: [
+          {
+            path: "",
+            name: "articleList",
+            component: () =>
+              import(
+                /* webpackChunkName: "articles" */ "../views/ArticleList.vue"
+              ),
+            meta: {
+              breadcrumbName: "文章列表"
+            }
+          },
+          {
+            path: ":article",
+            name: "article",
+            component: () =>
+              import(/* webpackChunkName: "article" */ "../views/Article.vue"),
+            meta: {
+              breadcrumbName: "文章详情"
+            }
+          }
+        ]
       }
     ]
   }
