@@ -67,7 +67,9 @@ module.exports = {
       .loader("raw-loader")
       .end();
     config.plugin("html").tap(args => {
-      args[0].title = "这是一个页面";
+      args[0].title = "人到中年";
+      args[0].keywords = "生活,工作,前端博客";
+      args[0].description = "只是简单的记一点东西";
       return args;
     });
   }

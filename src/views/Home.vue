@@ -1,31 +1,69 @@
 <template>
-  <Container>
-    <Header>
-      <router-link to="about">关于</router-link>
-    </Header>
-    <div class="home">
-      <ul>
-        <li v-for="(article, index) in articleList" :key="index">
-          <router-link :to="`${article}.md`">{{ article }}</router-link>
-        </li>
-      </ul>
-    </div>
-  </Container>
+  <a-layout>
+    <a-layout-sider>
+      <a-menu>
+        <a-menu-item v-for="(item, index) in menuList" :key="index">
+          <router-link :to="item.link">{{ item.title }}</router-link>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-content class="main-content">
+        <div class="main-wrap">
+          <router-view></router-view>
+        </div>
+      </a-layout-content>
+    </a-layout>
+  </a-layout>
 </template>
 
 <script lang="ts">
+import { Router } from "vue-router";
 import { Options, Vue } from "vue-class-component";
-import Container from "@/components/Container.vue";
-import Header from "@/components/Header.vue";
-import { articles } from "@/utils/utils";
 
-@Options({
-  components: { Container, Header }
-})
+@Options({})
 export default class Home extends Vue {
-  articleList = articles.keys().map(key => key.replace(/\.\/(.*)\.md$/g, "$1"));
+  $router!: Router;
+  menuList = [
+    {
+      title: "文章列表",
+      link: "/articles"
+    }
+  ];
   mounted() {
-    console.log(1111);
+    this.$router.push(this.menuList[0].link);
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.main-content {
+  position: relative;
+  margin: 12px;
+  padding: 12px;
+  background: #fff;
+  height: calc(100vh - 24px);
+  overflow-y: auto;
+  &::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    background-clip: padding-box;
+    min-height: 28px;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background-color: #d2d2d2;
+    }
+  }
+  .main-wrap {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

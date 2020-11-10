@@ -23,17 +23,13 @@ export const md = getSingle(function() {
   return MarkdownIt({
     highlight: function(str: string, lang): string {
       if (lang && hljs.getLanguage(lang)) {
-        return (
-          '<pre class="hljs"><code>' +
-          hljs.highlight(lang, str, true).value +
-          "</code></pre>"
-        );
+        return `<pre class="hljs ${lang}"><code class="${lang}">${
+          hljs.highlight(lang, str, true).value
+        }</code></pre>`;
       }
-      return (
-        '<pre class="hljs"><code>' +
-        MarkdownIt.prototype.utils.escapeHtml(str) +
-        "</code></pre>"
-      );
+      return `<pre class="hljs"><code>${MarkdownIt.prototype.utils.escapeHtml(
+        str
+      )}</code></pre>`;
     }
   }).use(addLinkTarget);
 });

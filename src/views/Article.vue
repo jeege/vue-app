@@ -13,9 +13,8 @@ import { RouteLocation } from "vue-router";
 })
 export default class Home extends Vue {
   $route!: RouteLocation;
-  article = "";
-  mounted() {
-    this.article = articles(`.${this.$route.path}`).default;
+  get article() {
+    return articles(`.${decodeURIComponent(this.$route.path)}`).default;
   }
 }
 </script>

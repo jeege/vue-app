@@ -30,7 +30,8 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "node_modules/ant-design-vue/types"
   ],
   "exclude": [
     "node_modules",
