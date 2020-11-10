@@ -1,6 +1,17 @@
-import { createRouter, RouteRecordRaw, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  RouteRecordRaw,
+  createWebHistory,
+  RouterView
+} from "vue-router";
 import Home from "../views/Home.vue";
-import RoutePage from "../views/RoutePage.vue";
+import { h } from "@vue/runtime-core";
+
+const RoutePage = {
+  render: () => {
+    return h(RouterView);
+  }
+};
 
 const routes: Array<RouteRecordRaw> = [
   {
