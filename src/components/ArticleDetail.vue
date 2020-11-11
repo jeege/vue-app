@@ -1,8 +1,10 @@
 <template>
   <div class="article">
     <div ref="article" class="markdown" v-html="articleDom"></div>
-    <div class="nav">
-      <p class="nav-tit">大纲</p>
+    <div class="nav" :class="{ hide: !isShowNav }">
+      <div class="control-btn" @click="toggleNav">
+        {{ isShowNav ? "收起" : "展开" }}
+      </div>
       <a
         v-for="(item, index) in nav"
         :key="index"
@@ -34,6 +36,7 @@ interface Nav {
 export default class ArticleDetail extends Vue {
   article!: string;
   nav: Nav[] = [];
+  isShowNav = true;
   get wrapOffsetTop() {
     return this.$el.parentNode.offsetTop;
   }
@@ -49,6 +52,9 @@ export default class ArticleDetail extends Vue {
       offsetTop: item.offsetTop,
       type: item.tagName.toLowerCase()
     }));
+  }
+  toggleNav() {
+    this.isShowNav = !this.isShowNav;
   }
   scrollTo(top: number) {
     this.$anime({
@@ -72,14 +78,13 @@ export default class ArticleDetail extends Vue {
   right: 24px;
   top: 48px;
   width: 300px;
-  border: 1px solid #ccc;
-  padding: 12px;
+  box-shadow: 0 0 10px #ccc inset;
+  border-radius: 5px;
+  padding: 20px;
   background-color: #fff;
-  &-tit {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
+  transition: right 0.3s;
+  &.hide {
+    right: -300px;
   }
   &-item {
     display: block;
@@ -104,6 +109,24 @@ export default class ArticleDetail extends Vue {
   p {
     margin: 0;
     margin-bottom: 5px;
+  }
+  .control-btn {
+    position: absolute;
+    right: 100%;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgba(0, 21, 41, 0.7);
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center;
+    &:hover {
+      background: rgba(0, 21, 41, 0.9);
+    }
   }
 }
 </style>
