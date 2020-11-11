@@ -4,21 +4,32 @@
       <a-list-item>
         <a-list-item-meta>
           <template v-slot:title>
-            <router-link :to="`/article/${item}`">{{ item }} </router-link>
+            <router-link :to="`/article/${item.title}`"
+              >{{ item.title }}
+            </router-link>
           </template>
         </a-list-item-meta>
+        <div class="update-time">
+          更新时间：{{ formatTime(item.updateTime) }}
+        </div>
       </a-list-item>
     </template>
   </a-list>
 </template>
 
 <script lang="ts">
-import { articles } from "@/utils/utils";
 import { Vue } from "vue-class-component";
-
+import { formatTime } from "@/utils/utils";
 export default class List extends Vue {
-  articleList = articles.keys().map(key => key.replace(/\.\/(.*)\.md$/g, "$1"));
+  articleList = process.env.ARTICLE_LIST;
+  formatTime(time: number) {
+    return formatTime(time);
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.update-time {
+  color: #ccc;
+}
+</style>

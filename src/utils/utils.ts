@@ -37,3 +37,22 @@ export const md = getSingle(function() {
 export const articles = getSingle(function() {
   return require.context("@/articles", false, /\.md$/);
 });
+
+type time = number | string;
+export function formatTime(t: time, formatStr = "YYYY-MM-DD hh:mm:ss") {
+  const date = new Date(t);
+  const timeObj: Record<string, string> = {
+    YYYY: `${date.getFullYear()}`,
+    MM: `${date.getMonth() + 1}`,
+    DD: `${date.getDate()}`,
+    hh: `${date.getHours()}`.padStart(2, "0"),
+    mm: `${date.getMinutes()}`.padStart(2, "0"),
+    ss: `${date.getSeconds()}`.padStart(2, "0")
+  };
+  let arr;
+  const regExp = /YYYY|MM|DD|hh|mm|ss/g;
+  while ((arr = regExp.exec(formatStr))) {
+    formatStr = formatStr.replace(arr[0], timeObj[arr[0]]);
+  }
+  return formatStr;
+}

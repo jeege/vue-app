@@ -35,6 +35,7 @@
   ],
   "exclude": [
     "node_modules",
-    "vue.config.js"
+    "vue.config.js",
+    "generate.js"
   ]
 }

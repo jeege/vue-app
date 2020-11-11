@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const CompressionPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const isProduction = process.env.NODE_ENV === "production";
+const articleList = require("./generate");
 
 module.exports = {
   configureWebpack: config => {
@@ -70,6 +69,10 @@ module.exports = {
       args[0].title = "三十而已";
       args[0].keywords = "生活,工作,前端博客";
       args[0].description = "只是简单的记一点东西";
+      return args;
+    });
+    config.plugin("define").tap(args => {
+      args[0]["process.env"].ARTICLE_LIST = JSON.stringify(articleList);
       return args;
     });
   }
